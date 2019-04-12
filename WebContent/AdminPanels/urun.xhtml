@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html lang="tr" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<div class="hide kaydetmeislemi">
+	<h:commandButton id="btnurunkaydet" actionListener="#{urunbean.kaydet}" 	class="btn btn-primary" style="float:right" value="Kaydet" />
+	<h:commandButton id="btnurunsil" class="btn btn-primary" value="Sil" actionListener="#{urunbean.sil}" />
+</div>
+
+<div class="col-md-12">
+	<div class="">
+		<div class="clearfix"></div>
+		<div class="row">
+
+			<div class="col-md-12 col-xs-12 hide" id="bilgigirisformu">
+				<div class="x_panel">
+					<div class="x_title">
+						<h2>Ürün Ekle</h2>
+						<div class="clearfix"></div>
+
+					</div>
+					<div class="x_content">
+						<h:form class="form-horizontal form-label-left">
+
+							<div class="form-group col-md-6">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Ürün
+									Adı</label>
+								<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+									<h:inputText value="#{urunbean.ad}" type="text"
+										class="form-control has-feedback-left" id="txtuadi"
+										placeholder="Ürün adı gir..."
+										onkeyup="this.value=this.value.replace(/[^ ' 'a-z.,A-ZüÜğĞİçÇöÖşŞı]/g,'');" />
+									<span class="fa fa-tags form-control-feedback left"
+										aria-hidden="true"></span>
+								</div>
+							</div>
+
+
+							<div class="form-group col-md-6">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Ürün
+									Fiyatı</label>
+								<div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+									<h:inputText value="#{urunbean.fiyat}" type="text"
+										class="form-control has-feedback-left" id="txtufiyati"
+										placeholder="Ürün Fiyatını gir..."
+										onkeyup="var pos=this.selectionStart;
+									var size = this.value.length;	
+									
+             						this.value=this.value.replace(/,/g,'.').replace(/[^0-9,'.']+/g, '');
+             						
+             						if(this.value.indexOf('.')!=this.value.lastIndexOf('.'))
+										this.value=this.value.substring(0,size-1);
+										"
+										onfocus="
+															this.value=''
+									" />
+									<span class="fa fa-try form-control-feedback left"
+										aria-hidden="true"></span>
+								</div>
+							</div>
+
+
+							<div class="form-group col-md-6">
+								<label class="control-label col-md-3 col-sm-3 col-xs-12">Kategori</label>
+								<div class="col-md-9 col-sm-9 col-xs-12">
+									<h:selectOneMenu class="select2_single form-control listekategori" id="ls" name ="listekategori" label="listekategori" value="#{urunbean.kategoriid}">
+										<f:selectItem itemLabel="Bir Kayıt Seçmelisiniz..." />
+										<f:selectItems value="#{urunbean.listec}" var="liste" itemLabel="#{liste.ad}" itemValue="#{liste.id}" />
+									</h:selectOneMenu>
+								</div>
+							</div>
+
+
+							<div class="form-group col-md-12">
+
+
+								<div id="alerts"></div>
+								<div class="btn-toolbar editor" data-role="editor-toolbar"	data-target="#editor-one">
+									<div class="btn-group">
+										<a class="btn dropdown-toggle" data-toggle="dropdown"
+											title="Font"><i class="fa fa-font"></i><b class="caret"></b></a>
+										<ul class="dropdown-menu">
+										</ul>
+									</div>
+
+									<div class="btn-group">
+										<a class="btn dropdown-toggle" data-toggle="dropdown"
+											title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b
+											class="caret"></b></a>
+										<ul class="dropdown-menu">
+											<li><a data-edit="fontSize 5">
+													<p style="font-size: 17px">Huge</p>
+											</a></li>
+											<li><a data-edit="fontSize 3">
+													<p style="font-size: 14px">Normal</p>
+											</a></li>
+											<li><a data-edit="fontSize 1">
+													<p style="font-size: 11px">Small</p>
+											</a></li>
+										</ul>
+									</div>
+
+									<div class="btn-group">
+										<a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i
+											class="fa fa-bold"></i></a> <a class="btn" data-edit="italic"
+											title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+										<a class="btn" data-edit="strikethrough" title="Strikethrough"><i
+											class="fa fa-strikethrough"></i></a> <a class="btn"
+											data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i
+											class="fa fa-underline"></i></a>
+									</div>
+
+									<div class="btn-group">
+										<a class="btn" data-edit="insertunorderedlist"
+											title="Bullet list"><i class="fa fa-list-ul"></i></a> <a
+											class="btn" data-edit="insertorderedlist" title="Number list"><i
+											class="fa fa-list-ol"></i></a> <a class="btn" data-edit="outdent"
+											title="Reduce indent (Shift+Tab)"><i class="fa fa-dedent"></i></a>
+										<a class="btn" data-edit="indent" title="Indent (Tab)"><i
+											class="fa fa-indent"></i></a>
+									</div>
+
+									<div class="btn-group">
+										<a class="btn" data-edit="justifyleft"
+											title="Align Left (Ctrl/Cmd+L)"><i
+											class="fa fa-align-left"></i></a> <a class="btn"
+											data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i
+											class="fa fa-align-center"></i></a> <a class="btn"
+											data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i
+											class="fa fa-align-right"></i></a> <a class="btn"
+											data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i
+											class="fa fa-align-justify"></i></a>
+									</div>
+
+									<div class="btn-group">
+										<a class="btn dropdown-toggle" data-toggle="dropdown"
+											title="Hyperlink"><i class="fa fa-link"></i></a>
+										<div class="dropdown-menu input-append">
+											<input class="span2" placeholder="URL" type="text"
+												data-edit="createLink" />
+											<button class="btn" type="button">Add</button>
+										</div>
+										<a class="btn" data-edit="unlink" title="Remove Hyperlink"><i
+											class="fa fa-cut"></i></a>
+									</div>
+
+									<div class="btn-group">
+										<a class="btn" title="Insert picture (or just drag  drop)"
+											id="pictureBtn"><i class="fa fa-picture-o"></i></a> <input
+											type="file" data-role="magic-overlay"
+											data-target="#pictureBtn" data-edit="insertImage" />
+									</div>
+
+									<div class="btn-group">
+										<a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i
+											class="fa fa-undo"></i></a> <a class="btn" data-edit="redo"
+											title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+									</div>
+								</div>
+
+								<div id="editor-one" class="editor-wrapper" ></div>
+							
+								<h:inputText name="descr" id="descr"  value="#{urunbean.aciklama}" style="display:none;"></h:inputText>
+
+								<br />
+
+								<div class="ln_solid"></div>
+
+							</div>
+
+
+
+
+							<div class="form-group col-md-12">
+								<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+									<br />
+									<button type="button" class="btn btn-dark" onclick="iptal()"	style="float: right">İptal</button>
+									<button type="button" class="btn btn-success"	onclick="kaydet()" style="float: right">Kaydet</button>
+
+
+
+
+
+								</div>
+							</div>
+
+						</h:form>
+					</div>
+
+				</div>
+			</div>
+
+
+			<div class="col-md-12 col-xs-12">
+				<div class="x_panel">
+
+
+
+					<div class="x_title">
+						<h2>Ürün Listesi</h2>
+						<ul class="nav navbar-right panel_toolbox">
+							<li><a class="btn" onclick="yenikayit()"> <img
+									src="../resources/images/add.png" />
+							</a></li>
+
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+
+
+
+					<div class="x_content">
+
+
+						<table id="example"
+							class="table table-striped responsive-utilities jambo_table">
+							<thead>
+								<tr class="headings">
+									<th style="vertical-align: middle; text-align: left">Id</th>
+									<th style="text-align: left">Kategori Adı</th>
+									<th style="text-align: left">Ürün Adı</th>
+									<th style="text-align: left">Ürün Fiyatı</th>
+									<th style="text-align: left">Sil</th>
+								</tr>
+							</thead>
+
+							<tbody>
+
+
+								<ui:repeat var="ls" value="#{urunbean.listem}">
+
+
+									<tr class="even pointer">
+
+										<td class="width:%10">#{ls.id}</td>
+										<td class="width:%80">#{ls.kategoriadi}</td>
+										<td class="width:%80">#{ls.ad}</td>
+										<td class="width:%80">#{ls.fiyat} TL</td>
+
+										<td class="width:%10">
+											<div>
+												<button type="button"
+													class="btn btn-round btn-danger col-lg-12"	onclick="sil(#{ls.id})">Sil</button>
+
+											</div>
+										</td>
+									</tr>
+
+
+
+								</ui:repeat>
+
+							</tbody>
+
+						</table>
+
+					</div>
+
+
+
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+	<!-- Silme İşlemi Onay Formu -->
+	<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<h:inputText id="txtsilinecek" value="#{urunbean.silinecekid}" />
+		<h:inputText id="txtkategoriadi" value="#{urunbean.kategoriAdi}" />
+		<button type="button" class="btn btn-primary" data-toggle="modal"
+			data-target=".acilacak" aria-hidden="true" id="btnSilOnay">btn</button>
+	</div>
+	<div class="modal fade bs-example-modal-sm acilacak" tabindex="-1"
+		role="dialog" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+
+				<div class="modal-header">
+
+					<h4 class="modal-title" id="myModalLabel2">Uyarı!</h4>
+				</div>
+				<div class="modal-body">
+					<h4>Ürün Silme İşlemi</h4>
+					<p>İligi kaydı Silme İstiyor musunuz</p>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						onclick="Kapat()">İptal</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal"
+						onclick="urunsil()">Sil</button>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- Silme İşlemi Onay Formu Bitiş -->
+
+</div>
+<script>
+	function yenikayit() {
+		$("#bilgigirisformu").removeClass('hide');
+	}
+	function iptal() {
+		$("#bilgigirisformu").addClass('hide');
+	}
+	var silinecekID;
+	function sil(silID) {
+		silinecekID = silID;
+		var elem = document.getElementById("frmdefault:txtsilinecek"); 
+		elem.value = silID;
+		document.getElementById("btnSilOnay").click();
+	}
+
+	function kaydet(){
+		
+		//var $element = $('.listekategori').val();    alert($element);
+		var label1 = document.getElementById("frmdefault:ls").getElementsByTagName("listekategori")[0]; 
+		alert(label1);
+		document.getElementById("frmdefault:btnurunkaydet").click();	
+	}
+	
+	function urunsil() {
+		document.getElementById("frmdefault:btnurunsil").click();	
+		
+	}
+	
+</script>
+</html>

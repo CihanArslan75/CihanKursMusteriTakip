@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<link rel="stylesheet" href="resources/css/productdetail.css" />
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+		crossorigin="anonymous" />
+	<link rel="stylesheet" href="resources/css/navbar.css" />
+	<link rel="stylesheet" href="resources/css/products.css" />
+
+
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+		integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+		crossorigin="anonymous" />
+
+	<title>Cihan Arslan ETicaret</title>
+</h:head>
+
+
+<h:body>
+	<h:form id="frmdefault">
+		<link
+			href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+			rel="stylesheet"
+			integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+			crossorigin="anonymous" />
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">E-TİCARET</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarsExampleDefault"
+				aria-controls="navbarsExampleDefault" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div style="visibility: hidden">
+				<h:inputText id="txturun" value="#{urunBean.urunid}" />
+				<h:commandButton id="btnurun" action="#{urunBean.urunsec}"
+					value="Ürün Seç" />
+			</div>
+			<div class="collapse navbar-collapse justify-content-end"
+				id="navbarsExampleDefault">
+				<ul class="navbar-nav m-auto">
+					<li class="nav-item"><a class="nav-link"
+						href="urunler.jsf?faces-redirect=true">AnaSayfa</a></li>
+					<li class="nav-item active"><a class="nav-link"
+						href="category.html">Kategoriler <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="product.html">Ürün</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="cart.html">Kart</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="contact.html">İletişim</a>
+					</li>
+				</ul>
+				<div class="input-group input-group-sm">
+					<input type="text" class="form-control" aria-label="Small"
+						aria-describedby="inputGroup-sizing-sm" placeholder="Ara..." />
+					<div class="input-group-append">
+						<button type="button" class="btn btn-secondary btn-number">
+							<i class="fa fa-search"></i>
+						</button>
+					</div>
+				</div>
+				<a class="btn btn-success btn-sm ml-3" href="cart.html"> <i
+					class="fa fa-shopping-cart"></i> Kart <span
+					class="badge badge-light">3</span>
+				</a>
+			</div>
+		</div>
+		</nav>
+		<section class="jumbotron text-center jarallax"
+			data-jarallax='{"speed": 0.2}'
+			data-jarallax-video="https://www.youtube.com/watch?v=YTR21os8gTA">
+		<div class="container" style="color: white">
+			<h1 class="jumbotron-heading">E-TİCARET KATEGORİLERİ</h1>
+			<p class="lead text-muted mb-0">Le Lorem Ipsum est simplement du
+				faux texte employé dans la composition et la mise en page avant
+				impression. Le Lorem Ipsum est le faux texte standard de
+				l'imprimerie depuis les années 1500, quand un peintre anonyme
+				assembla ensemble des morceaux de texte pour réaliser un livre
+				spécimen de polices de texte...</p>
+		</div>
+		</section>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="index.html">Anasayfa</a></li>
+						<li class="breadcrumb-item"><a href="category.html">Kategori</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Alt Kategoriler</li>
+					</ol>
+					</nav>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-sm-3">
+					<div class="card bg-light mb-3">
+						<div class="card-header bg-primary text-white text-uppercase">
+							<i class="fa fa-list"></i> Kategoriler
+						</div>
+						<ul class="list-group category_block">
+							<ui:repeat var="lst" value="#{urunBean.listeC}">
+								<li class="list-group-item"><a href="category.html">#{lst.ad}</a></li>
+								<ul class="list-group category_block">
+									<li class="list-group-item"><a href="category.html">#{lstc.ad}</a></li>
+								</ul>
+							</ui:repeat>
+						</ul>
+					</div>
+					<div class="card bg-light mb-3">
+						<div class="card-header bg-success text-white text-uppercase">Son Ürün</div>
+						<div class="card-body">
+							<img class="img-fluid"
+								src="https://dummyimage.com/600x400/55595c/fff" />
+							<h5 class="card-title">Ürün</h5>
+							<p class="card-text">Some quick example text to build on the
+								card title and make up the bulk of the card's content.</p>
+							<p class="bloc_left_price">99.00 $</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<ui:include src="#{urunBean.ortalan}" />
+				</div>
+			</div>
+		</div>
+		<footer class="text-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-lg-4 col-xl-3">
+					<h5>Hakkımda</h5>
+					<hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25" />
+					<p class="mb-0">Le Lorem Ipsum est simplement du faux texte
+						employé dans la composition et la mise en page avant impression.</p>
+				</div>
+				<div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
+					<h5>Bilgiler</h5>
+					<hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25" />
+					<ul class="list-unstyled">
+						<li><a href="">Link 1</a></li>
+						<li><a href="">Link 2</a></li>
+						<li><a href="">Link 3</a></li>
+						<li><a href="">Link 4</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 col-lg-2 col-xl-2 mx-auto">
+					<h5>Diğer Linkler</h5>
+					<hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25" />
+					<ul class="list-unstyled">
+						<li><a href="">Link 1</a></li>
+						<li><a href="">Link 2</a></li>
+						<li><a href="">Link 3</a></li>
+						<li><a href="">Link 4</a></li>
+					</ul>
+				</div>
+				<div class="col-md-4 col-lg-3 col-xl-3">
+					<h5>İletişim</h5>
+					<hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25" />
+					<ul class="list-unstyled">
+						<li><i class="fa fa-home mr-2"></i> Firma</li>
+						<li><i class="fa fa-envelope mr-2"></i> email@example.com</li>
+						<li><i class="fa fa-phone mr-2"></i> + 33 12 14 15 16</li>
+						<li><i class="fa fa-print mr-2"></i> + 33 12 14 15 16</li>
+					</ul>
+				</div>
+				<div class="col-12 copyright mt-3">
+					<p class="float-left">
+						<a href="#">Başa Dön</a>
+					</p>
+					<p class="text-right text-muted">
+						created with <i class="fa fa-heart"></i> by <a
+							href="https://t-php.fr/43-theme-ecommerce-bootstrap-4.html"><i>t-php</i></a>
+						| <span>v. 1.0</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		</footer>
+		<script>
+		function ekle(id){
+			document.getElementById("frmdefault:txturun").value=id;
+			document.getElementById("frmdefault:btnurun").click();
+		}
+</script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+			integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+			integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://mdbootstrap.com/previews/docs/latest/js/mdb.min.js"></script>
+		<script
+			src="https://mdbootstrap.com/previews/docs/latest/js/jarallax.js"></script>
+		<script
+			src="https://mdbootstrap.com/previews/docs/latest/js/jarallax-video.js"></script>
+	</h:form>
+</h:body>
+
+
+</html>

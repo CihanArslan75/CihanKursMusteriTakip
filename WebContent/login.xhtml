@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+<h:head>
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+ <link type="text/css" rel="stylesheet"  href="resources/css/login.css?ln=css" />
+
+<link href='http://fonts.googleapis.com/css?family=Raleway:300,100' rel='stylesheet' type='text/css' />
+</h:head>
+
+<h:body>
+<h:form id="login-form">
+   <section class="login-block" >
+	<div class="container" align="center">
+		<div class="row">
+			<div class="col-md-4 login-sec">
+				<h2 class="text-center">Merhaba</h2>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Kullanıcı (E-mail) </label>
+						<h:inputText type="text" class="form-control"
+							value="#{loginBean.username}" />
+
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Şifre</label>
+						<h:inputSecret type="password" class="form-control"
+							value="#{loginBean.password}" />
+					</div>
+
+
+					<div class="form-group">
+						<h:commandButton class="btn btn-login " value="Giriş" action="#{loginBean.doLogin}"></h:commandButton>
+						<br /> <a href="createaccount.jsf?faces-redirect=true">Üye Ol</a>
+					</div>
+			</div>
+			<div class="col-md-8 banner-sec">
+				<div id="carouselExampleIndicators" class="carousel slide"
+					data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carouselExampleIndicators" data-slide-to="0"
+							class="active"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+					</ol>
+					<div class="carousel-inner" role="listbox">
+						<div class="carousel-item active">
+							<img class="d-block img-fluid"
+								src="https://static.pexels.com/photos/33972/pexels-photo.jpg"
+								alt="First slide" />
+							<div class="carousel-caption d-none d-md-block"></div>
+						</div>
+						<div class="carousel-item">
+							<img class="d-block img-fluid"
+								src="https://images.pexels.com/photos/7097/people-coffee-tea-meeting.jpg"
+								alt="First slide" />
+							<div class="carousel-caption d-none d-md-block"></div>
+						</div>
+						<div class="carousel-item">
+							<img class="d-block img-fluid"
+								src="https://images.pexels.com/photos/872957/pexels-photo-872957.jpeg"
+								alt="First slide" />
+							<div class="carousel-caption d-none d-md-block"></div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
+  </h:form>
+</h:body>
+</html>
